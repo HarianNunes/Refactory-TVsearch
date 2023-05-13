@@ -49,7 +49,7 @@ const searchShows = (event) => {
 
           printCard(newShow)
         })
-        localStorage.clear();
+        localStorage.removeItem('shows');
         
         const newShowSTR = JSON.stringify(saveShows);
         localStorage.setItem('shows', newShowSTR);
@@ -84,3 +84,6 @@ const printCard = (show) => {
 }
 shows.forEach((c) => printCard(c))
 
+const favButton = $('fav-button').addEventListener('click', function() {
+  window.location.href = './favorites.html'
+})

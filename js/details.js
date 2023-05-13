@@ -30,7 +30,8 @@ fetch(`${API_URL}/${id}`).then((response) => {
   })
 })
 const click = document.getElementById('back-link').addEventListener('click', function(){
-  window.location.href = 'index.html';
+  window.history.back();
+  //window.location.href = 'index.html';
 })
 
 

@@ -45,6 +45,19 @@ body {
     cursor: pointer;
 }
 
+#fav-button {
+    padding: 10px 20px;
+    border: none;
+    font-family: bold;
+    font-size: 100%;
+    border-radius: 10px;
+    background-color: #2d55ff;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    margin-left: 90%;
+}
+
 #not-found-message {
     display: none;
     text-align: center;
