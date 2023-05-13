@@ -8,9 +8,6 @@ const valorCheckbox = JSON.parse(localStorage.getItem('checkboxes'));
 
 let box = document.getElementById('flexCheckDefault');
 
-
-
-
 fetch(`${API_URL}/${id}`).then((response) => {
   response.json().then((result) => {
     const { name, type, language, genres, status, image, network, webChannel } = result
@@ -36,24 +33,32 @@ const click = document.getElementById('back-link').addEventListener('click', fun
   window.location.href = 'index.html';
 })
 
-document.getElementById('flexCheckDefault').addEventListener('change', function(){
-  const fav = document.getElementById('flexCheckDefault').checked;
-  if(fav){
-    const items = JSON.parse(localStorage.getItem('shows'));
-    //console.log(items);
-    const resposta = items.filter(item => item.id == id)
-    //console.log(resposta);
-    const checkboxesData = JSON.stringify(resposta.filter(item => item.id == id));
-    console.log(fav, checkboxesData);
-    let boxess = localStorage.checkboxes ? localStorage.getItem('checkboxes') : [];
-    console.log(boxess);
-    localStorage.setItem('checkboxes', JSON.stringify({fav, checkboxesData}));
+
+let favs = JSON.parse(localStorage.getItem('Favorites')) ?? [];
+for(let i = 0; i < favs.length; i++){
+    if(favs[i].id == id){
+      box.checked = true;
     }
-  else {
-    localStorage.setItem('checkboxes', fav)
+}
+
+const change = box.addEventListener('change', function(){
+  if(box.checked){
+    query();
   }
-  
-});
+  else {
+    let data = JSON.parse(localStorage.getItem('Favorites'));
+    for(let i = 0; i < data.length; i++){
+      if(data[i].id == id){
+        let ident = Number(id);
+        let index = data.findIndex(item => item.id == ident);
+        data.splice(index, 1);
+        localStorage.setItem('Favorites', JSON.stringify(data));
+      }
+    }
+
+  }
+})
+
 const resp = async () =>{
   try {
     if(localStorage.Favorites){
@@ -71,16 +76,26 @@ const resp = async () =>{
   }
 }
 
-const shows = [];
-const select = JSON.parse(localStorage.getItem('Favorites'));
 
-
-let entrada = JSON.parse(localStorage.getItem('checkboxes'));
-let cheque = JSON.parse(entrada.checkboxesData)
-
-Object.keys(cheque).forEach(function (key) {
-  if(cheque[key].id == id && entrada.fav == true){   
-      box.checked = true;
+const query = async () => {
+  try {
+    const resposta = await fetch(`${API_URL}/${id}`);
+    let check = box.checked;
+    console.log(check);
+    data = await resposta.json();
+    const imageUrl = await data.image? data.image.medium : '/img/noimage.png';
+    const newShow1 = {
+      'id': data.id,
+      'name': data.name,
+      'image': imageUrl,
+      'check': check
+    }
+    let boxe = await JSON.parse(localStorage.getItem('Favorites')) ?? [];
+    await console.log(boxe);
+    await boxe.push(newShow1)
+    await localStorage.setItem('Favorites', JSON.stringify(boxe));
   }
-})
-let idBox = JSON.parse(valorCheckbox.checkboxesData);
+  catch {
+      console.log('erro')
+    }
+}
