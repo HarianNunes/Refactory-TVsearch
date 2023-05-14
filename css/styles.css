@@ -13,10 +13,16 @@ body {
     border-radius: 20px;
     box-shadow: 20px 20px 60px #d9d9d9, 
                 -20px -20px 60px #fff;
+    display: flex;
+}
+#form-form {
+    display: flex;
+    flex-direction: row;
 }
 
 #form-area form {
     text-align: center;
+    display: flex;
 }
 
 #query {
@@ -102,10 +108,14 @@ body {
 @media screen and (max-width: 600px) {
     #container {
         padding: 20px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     #form-area {
         width: 80%;
+        flex-direction: column;
     }
 
     #form-area form {
@@ -121,5 +131,11 @@ body {
 
     .show-card {
         width: 100%;
+    }
+    #fav-button {
+        margin: 0;
+    }
+    #form-form {
+        margin: 0;
     }
 }

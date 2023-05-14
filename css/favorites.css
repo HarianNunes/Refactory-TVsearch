@@ -87,14 +87,30 @@ body {
 }
 #containerNullText span {
     font-family: 'regular';
+    font-size: 20px;
 }
 @media screen and (max-width: 600px) {
+    #shows{
+        display: flex;
+        flex-direction: column;
+    }
     #details-panel {
         width: 80%;
         flex-direction: column;
         align-items: center;
     }
-
+    #container {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    #container h1 {
+        font-size: 30px;
+    }
+    #container button {
+        font-size: 15px;
+    }
     #poster {
         margin: 0 0 20px 0;
         width: 80%;
@@ -103,4 +119,26 @@ body {
     .metadata {
         text-align: center;
     }
+    #containerNull {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+    }
+    #containerNull img {
+        width: 300px;
+        margin-left: 15%;
+    }
+    #containerNullText {
+        margin: 0;
+        padding: 0;
+    }
+    #containerNullText h1 {
+        width: 100%;
+        font-size: 30px;
+    }
+    #containerNullText span {
+        font-size: 15px;
+    }
+
 }

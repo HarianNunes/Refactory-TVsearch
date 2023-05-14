@@ -60,4 +60,7 @@
     .metadata {
         text-align: center;
     }
+    .form-check {
+        margin-left: 30%;
+    }
 }
