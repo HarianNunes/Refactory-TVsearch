@@ -140,5 +140,7 @@ body {
     #containerNullText span {
         font-size: 15px;
     }
-
+    #shows {
+        width: 90%;
+    }
 }
