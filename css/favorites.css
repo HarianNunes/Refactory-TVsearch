@@ -140,7 +140,8 @@ body {
     #containerNullText span {
         font-size: 15px;
     }
-    #shows {
-        width: 100%;
+    #shows .show-card {
+        width: 90%;
     }
+
 }
