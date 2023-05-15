@@ -3,9 +3,9 @@ const API_URL = 'https://api.tvmaze.com/shows'
 const search = window.location.search
 const params = new URLSearchParams(search)
 const id = params.get('id')
+const lastpage = document.referrer;
 const favArray = localStorage.Favorites ? localStorage.getItem('Favorites') : [];
 const valorCheckbox = JSON.parse(localStorage.getItem('checkboxes'));
-
 let box = document.getElementById('flexCheckDefault');
 
 fetch(`${API_URL}/${id}`).then((response) => {
@@ -30,9 +30,9 @@ fetch(`${API_URL}/${id}`).then((response) => {
   })
 })
 const click = document.getElementById('back-link').addEventListener('click', function(){
-  window.history.back();
-  //window.location.href = 'index.html';
+    window.location.href = lastpage;
 })
+
 
 
 let favs = JSON.parse(localStorage.getItem('Favorites')) ?? [];
@@ -70,7 +70,6 @@ const resp = async () =>{
     }
     const resposta = await fetch(`${API_URL}/${id}`)
     favo.push(data)
-    console.log(favo);
   }
   catch {
     console.log('erro')
@@ -82,7 +81,6 @@ const query = async () => {
   try {
     const resposta = await fetch(`${API_URL}/${id}`);
     let check = box.checked;
-    console.log(check);
     data = await resposta.json();
     const imageUrl = await data.image? data.image.medium : '/img/noimage.png';
     const newShow1 = {
